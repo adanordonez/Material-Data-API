@@ -105,8 +105,10 @@ fetch('/performValuation', {
     body: JSON.stringify(data)
 })
 .then(response => response.json())  // Convert response to JSON
-.then(data => {
+.then(rawJson => {
+    
     console.log("Received data:", data);  // Log the received data
+    var data = JSON.parse(rawJson);  // Parse the received data
     displayValuationResponse(data);  // Call the function to process and display the data
 })
 .catch(error => {
