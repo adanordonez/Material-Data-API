@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script id="search-js" defer src="https://api.mapbox.com/search-js/v1.0.0-beta.18/web.js"></script>
+    <script>        
+        const script = document.getElementById('search-js');
+        script.onload = function() {
+            const addressInput = document.querySelector('[name="address"]');
+            mapboxsearch.autofill({
+                accessToken: 'pk.eyJ1IjoiYWRhbm9yZG9uZXoiLCJhIjoiY2xyYXVwMmhrMGgwZDJrdDdvMDFuaHN3ZiJ9.hPTesY3Ns3A15GdzMQYuRQ',
+                input: addressInput
+            });
+        };
+    </script>
+</head>
+<body>
+    <form id="propertyForm" onsubmit="prepareSubmit(event)">        <input name="address" placeholder="Full Address" type="text" autocomplete="address-line1" />
+        <input name="city" placeholder="City" type="text" autocomplete="address-level2" />
+        <input name="state" placeholder="State" type="text" autocomplete="address-level1" />
+        <input name="country" placeholder="Country" type="text" autocomplete="country" />
+        <input name="postcode" placeholder="Postcode" type="text" autocomplete="postal-code" />
+        <input type="hidden" name="address1" id="address1" />
+        <input type="hidden" name="address2" id="address2" />
+        <button type="submit">Submit</button>
+    </form>
+    <div id="responseContainer"></div>
+    <script src="static/mapbox.js"></script> <!-- Link to your JavaScript file -->
+
+</body>
+</html>

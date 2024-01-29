@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Selection</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<a href="/property-details">Go to Property Details</a>
+<a href="/mapbox">Go to Mapbox Page</a>
+
+
+<body>
+    <h1>Select a State</h1>
+    
+    <!-- Dropdown for state selection -->
+    <select id="stateSelector">
+        <option value="">Select a State</option>
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+        <option value="DE">Delaware</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+    </select>
+
+    <select id="zipCodeTypeSelector">
+        <option value="ThreeDigit">Three-Digit Zip Code</option>
+        <option value="FiveDigit">Five-Digit Zip Code</option>
+    </select>
+
+    <button id="submitButton">Submit</button>
+
+    <!-- Paragraph to display the GET request URL -->
+    <p id="requestUrl"></p>
+
+    
+
+    <!-- Div to show the response data -->
+    <div id="responseArea"></div>
+
+<!-- Part 2 -->
+
+
+
+    <h1>Home Valuation Form</h1>
+    
+    <form id="valuationForm">
+        <label for="homeType">Home Type:</label>
+        <select id="homeType">
+            <option value="SingleFamilyHome">Single Family Home</option>
+            <option value="ManufacturedHome">Manufactured Home</option>
+            <option value="MultiFamilyHome">Multi Family Home</option>
+        </select>
+        
+        <label for="cityId">City ID:</label>
+        <input type="number" id="cityId" placeholder="City ID">
+        
+        <!-- Additional Inputs for singleFamilyHome -->
+        <label for="corners">Corners:</label>
+        <input type="number" id="corners" placeholder="Corners">
+        
+        <label for="livingArea">Living Area:</label>
+        <input type="number" id="livingArea" placeholder="Living Area">
+
+        <label for="stories">Stories:</label>
+        <input type="number" id="stories" placeholder="Stories">
+
+        <label for="yearBuilt">Year Built:</label>
+        <input type="number" id="yearBuilt" placeholder="Year Built">
+
+        <label for="exteriorWallType">Exterior Wall Type:</label>
+        <select id="exteriorWallType">
+            <option value="Frame">Frame</option>
+            <option value="Masonry">Masonry</option>
+        </select>
+ <!-- Home Quality Section -->
+    <!-- Foundation Quality -->
+<label for="foundationQuality">Foundation Quality:</label>
+<select id="foundationQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Exterior Walls Quality -->
+<label for="exteriorWallsQuality">Exterior Walls Quality:</label>
+<select id="exteriorWallsQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Exterior Finish Quality -->
+<label for="exteriorFinishQuality">Exterior Finish Quality:</label>
+<select id="exteriorFinishQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Windows and Doors Quality -->
+<label for="windowsAndDoorsQuality">Windows and Doors Quality:</label>
+<select id="windowsAndDoorsQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Roof Soffit Quality -->
+<label for="roofSoffitQuality">Roof Soffit Quality:</label>
+<select id="roofSoffitQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Interior Finish Quality -->
+<label for="interiorFinishQuality">Interior Finish Quality:</label>
+<select id="interiorFinishQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Floor Finish Quality -->
+<label for="floorFinishQuality">Floor Finish Quality:</label>
+<select id="floorFinishQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Bathrooms Quality -->
+<label for="bathroomsQuality">Bathrooms Quality:</label>
+<select id="bathroomsQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Plumbing and Electrical Quality -->
+<label for="plumbingElectricalQuality">Plumbing and Electrical Quality:</label>
+<select id="plumbingElectricalQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Kitchen Quality -->
+<label for="kitchenQuality">Kitchen Quality:</label>
+<select id="kitchenQuality">
+    <option value="Luxury">Luxury</option>
+    <option value="SemiLuxury">Semi Luxury</option>
+    <option value="BestStandard">Best Standard</option>
+    <option value="GoodStandard">Good Standard</option>
+    <option value="AverageStandard">Average Standard</option>
+    <option value="MinimumStandard">Minimum Standard</option>
+</select>
+
+<!-- Home Condition Section -->
+
+<!-- Foundation Condition -->
+<label for="foundationCondition">Foundation Condition:</label>
+<select id="foundationCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Exterior Walls Condition -->
+<label for="exteriorWallsCondition">Exterior Walls Condition:</label>
+<select id="exteriorWallsCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Exterior Finish Condition -->
+<label for="exteriorFinishCondition">Exterior Finish Condition:</label>
+<select id="exteriorFinishCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Windows and Doors Condition -->
+<label for="windowsAndDoorsCondition">Windows and Doors Condition:</label>
+<select id="windowsAndDoorsCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Roof Soffit Condition -->
+<label for="roofSoffitCondition">Roof Soffit Condition:</label>
+<select id="roofSoffitCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Interior Finish Condition -->
+<label for="interiorFinishCondition">Interior Finish Condition:</label>
+<select id="interiorFinishCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Floor Finish Condition -->
+<label for="floorFinishCondition">Floor Finish Condition:</label>
+<select id="floorFinishCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Bathrooms Condition -->
+<label for="bathroomsCondition">Bathrooms Condition:</label>
+<select id="bathroomsCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Plumbing and Electrical Condition -->
+<label for="plumbingElectricalCondition">Plumbing and Electrical Condition:</label>
+<select id="plumbingElectricalCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Kitchen Condition -->
+<label for="kitchenCondition">Kitchen Condition:</label>
+<select id="kitchenCondition">
+    <option value="New">New</option>
+    <option value="LikeNew">Like New</option>
+    <option value="WellMaintained">Well Maintained</option>
+    <option value="DeferredMaintenance">Deferred Maintenance</option>
+    <option value="ObviousDefects">Obvious Defects</option>
+    <option value="SevereDefects">Severe Defects</option>
+</select>
+
+<!-- Heating and Cooling Type -->
+<label for="heatingCoolingType">Heating and Cooling Type:</label>
+<select id="heatingCoolingType">
+    <option value="ForcedAirCentralDuctedHeat">Forced Air Central Ducted Heat</option>
+    <option value="ForcedAirCentralDuctedHeatCool">Forced Air Central Ducted Heat and Cool</option>
+    <option value="DuctedGravityHeat">Ducted Gravity Heat</option>
+    <option value="CirculatingHotColdWaterSystem">Circulating Hot/Cold Water System</option>
+    <option value="NoCentralHeating">No Central Heating</option>
+</select>
+
+        <button type="submit">Submit Valuation</button>
+    </form>
+
+    <div id="postresponse"></div>
+
+    <div id="valuationResponse"></div>
+
+    
+
+
+    <!-- JavaScript file -->
+    <script src="static/script.js"></script>
+    <script src="static/valuationscript.js"></script>
+</body>
+</html>

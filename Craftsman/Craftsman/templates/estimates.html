@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Estimates</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <input type="text" id="descriptionInput" placeholder="Enter description">
+    <div id="suggestions" style="border:1px solid #ddd; display:none;"></div>
+    
+    <button id="getCostButton">Get Lump Sum Cost</button>
+    <div id="costResult"></div>
+    
+    <script>
+        $(document).ready(function() {
+            $('#descriptionInput').on('input', function() {
+                var inputVal = $(this).val();
+                if(inputVal.length > 0) {
+                    $.ajax({
+                        url: '/search_descriptions',
+                        data: { 'query': inputVal },
+                        success: function(data) {
+                            var suggestions = $('#suggestions');
+                            suggestions.empty();
+                            data.forEach(function(item) {
+                                suggestions.append('<div>' + item + '</div>');
+                            });
+                            suggestions.show();
+                        }
+                    });
+                } else {
+                    $('#suggestions').hide();
+                }
+            });
+
+            $('#suggestions').on('click', 'div', function() {
+                $('#descriptionInput').val($(this).text());
+                $('#suggestions').hide();
+            });
+
+            $('#getCostButton').on('click', function() {
+                var description = $('#descriptionInput').val();
+                if(description) {
+                    $.ajax({
+                        url: '/get_material_cost',
+                        data: { 'description': description },
+                        success: function(cost) {
+                            $('#costResult').text('Lump Sum Cost: ' + cost);
+                        },
+                        error: function() {
+                            $('#costResult').text('Failed to fetch the cost');
+                        }
+                    });
+                } else {
+                    $('#costResult').text('Please enter a description.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
