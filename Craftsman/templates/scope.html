@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scope of Work</title>
+</head>
+<body>
+    <h1>Calculate Home Cost</h1>
+    <form id="cost-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+        <label for="quality-class">Quality Class:</label>
+        <select name="quality-class" id="quality-class">
+            {% for quality in quality_classes %}
+            <option value="{{ quality }}">{{ quality }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="corners">Corners:</label>
+        <select name="corners" id="corners">
+            {% for corner in corners_options %}
+            <option value="{{ corner }}">{{ corner }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="square-footage">Square Footage:</label>
+        <input type="number" id="square-footage" name="square-footage" required>
+
+        <button type="button" onclick="calculateCost()">Calculate Cost</button>
+    </form>
+
+    <div id="cost-result">Cost will be displayed here</div>
+
+    <script>
+        async function calculateCost() {
+            const formData = new FormData(document.getElementById('cost-form'));
+            const data = {
+                'quality-class': formData.get('quality-class'),
+                'corners': formData.get('corners'),
+                'square-footage': formData.get('square-footage')
+            };
+            
+            try {
+                const response = await fetch('/calculate-cost', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // Ensure CSRF token is included if using Flask-WTF
+                        'X-CSRFToken': formData.get('csrf_token')
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if(result.cost) {
+                    const totalCost = result.cost; // The server should already return the total cost
+                    document.getElementById('cost-result').innerText = `Total Cost: $${totalCost.toFixed(2)}`;
+                } else {
+                    document.getElementById('cost-result').innerText = result.error || 'An error occurred while calculating the cost.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('cost-result').innerText = 'An error occurred while calculating the cost.';
+            }
+        }
+    </script>
+</body>
+</html>
